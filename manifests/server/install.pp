@@ -115,7 +115,7 @@ class icinga2::server::install::execs inherits icinga2::server {
       exec { 'mysql_schema_load':
         user    => 'root',
         path    => '/usr/bin:/usr/sbin:/bin/:/sbin',
-        command => "mysql -u ${db_user} -p${db_password} ${db_name} < ${server_db_schema_path}; touch /etc/icinga2/mysql_schema_loaded.txt",
+        command => "mysql -u ${db_user} -p'${db_password}' ${db_name} < ${server_db_schema_path}; touch /etc/icinga2/mysql_schema_loaded.txt",
         creates => "/etc/icinga2/mysql_schema_loaded.txt",
         require => Class['icinga2::server::install::packages'],
       }
